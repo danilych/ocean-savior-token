@@ -1,0 +1,11 @@
+{
+  "name": "ocean-savior-token",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:danilych/ocean-savior-token.git",
+  "author": "danilych <danilych45@proton.me>",
+  "license": "MIT",
+  "dependencies": {
+    "@openzeppelin/contracts": "^4.9.2"
+  }
+}
