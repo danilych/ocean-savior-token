@@ -16,8 +16,8 @@ contract Vault is Ownable {
     // @notice OceanSavior token
     IERC20 token;
 
-    constructor(address token_) {
-        token = IERC20(token_);
+    constructor(IERC20 token_) {
+        token = token_;
     }
 
     // @notice function for withdraw OceanSavior tokens from Vault
