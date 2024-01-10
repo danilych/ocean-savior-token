@@ -6,6 +6,7 @@
   "author": "danilych <danilych45@proton.me>",
   "license": "MIT",
   "dependencies": {
-    "@openzeppelin/contracts": "^4.9.2"
+    "@openzeppelin/contracts": "^4.9.2",
+    "solhint": "^4.1.1"
   }
 }
