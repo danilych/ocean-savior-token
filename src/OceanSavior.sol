@@ -1,9 +1,9 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.20;
 
-import {ERC20} from "@openzeppelin/contracts/token/ERC20/ERC20.sol";
-import {ERC20Burnable} from "@openzeppelin/contracts/token/ERC20/extensions/ERC20Burnable.sol";
-import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
+import { ERC20 } from "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+import { ERC20Burnable } from "@openzeppelin/contracts/token/ERC20/extensions/ERC20Burnable.sol";
+import { Ownable } from "@openzeppelin/contracts/access/Ownable.sol";
 
 contract MyToken is ERC20, ERC20Burnable, Ownable {
     // @notice address of Vault contract for holding transfer fee.
@@ -17,16 +17,14 @@ contract MyToken is ERC20, ERC20Burnable, Ownable {
 
     error InvalidValue();
 
-    constructor(
-        uint16 collectorTax_,
-        uint16 burnTax_
-    ) ERC20("OceanSavior", "OSR") {
-        if (collectorTax_ + burnTax_ < 0 || collectorTax_ + burnTax_ > 1000)
+    constructor(uint16 collectorTax_, uint16 burnTax_) ERC20("OceanSavior", "OSR") {
+        if (collectorTax_ + burnTax_ < 0 || collectorTax_ + burnTax_ > 1000) {
             revert InvalidValue();
+        }
         collectorTax = collectorTax;
         burnTax = burnTax_;
 
-        _mint(msg.sender, 1000000000 * 10 ** decimals());
+        _mint(msg.sender, 1_000_000_000 * 10 ** decimals());
     }
 
     function updateVault(address vault_) external onlyOwner {
@@ -35,24 +33,22 @@ contract MyToken is ERC20, ERC20Burnable, Ownable {
     }
 
     function updateCollectorTax(uint16 collectorTax_) external onlyOwner {
-        if (collectorTax_ + burnTax < 0 || collectorTax_ + burnTax > 1000)
+        if (collectorTax_ + burnTax < 0 || collectorTax_ + burnTax > 1000) {
             revert InvalidValue();
+        }
 
         collectorTax = collectorTax_;
     }
 
     function updateBurnTax(uint16 burnTax_) external onlyOwner {
-        if (collectorTax + burnTax_ < 0 || collectorTax + burnTax_ > 1000)
+        if (collectorTax + burnTax_ < 0 || collectorTax + burnTax_ > 1000) {
             revert InvalidValue();
+        }
 
         burnTax = burnTax_;
     }
 
-    function _transfer(
-        address from,
-        address to,
-        uint256 amount
-    ) internal override {
+    function _transfer(address from, address to, uint256 amount) internal override {
         uint256 tax = (amount * collectorTax) / 1000;
         uint256 toBurn = (amount * burnTax) / 1000;
 

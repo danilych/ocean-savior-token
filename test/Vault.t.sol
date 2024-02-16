@@ -1,9 +1,9 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.13;
 
-import {Test, console2} from "forge-std/Test.sol";
-import {Vault} from "../src/Vault.sol";
-import {ERC20mock} from "./mocks/ERC20.mock.sol";
+import { Test, console2 } from "forge-std/Test.sol";
+import { Vault } from "../src/Vault.sol";
+import { ERC20mock } from "./mocks/ERC20.mock.sol";
 
 contract VaultTest is Test {
     Vault public vault;
